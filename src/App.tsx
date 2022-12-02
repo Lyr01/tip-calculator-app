@@ -62,7 +62,7 @@ function App() {
 
 	return (
 		<main className="App">
-			<img src={Logo} alt="logo" />
+			<img className="logo" src={Logo} alt="logo" />
 			<div className="container">
 				<div className="left-section">
 					<div className="bill">
@@ -149,24 +149,26 @@ function App() {
 						/>
 					</div>
 				</div>
-				<div className="right-section">
-					<div>
-						<span>
-							Tip Amount <br />
-							<small>/ person</small>
-						</span>
-						<h1>${numberOfPeople ? eachTip : "0.00"}</h1>
+				<div className="right-section-container">
+					<div className="right-section">
+						<div>
+							<span>
+								Tip Amount <br />
+								<small>/ person</small>
+							</span>
+							<h1>${numberOfPeople !== "0" ? eachTip : "0.00"}</h1>
+						</div>
+						<div>
+							<span>
+								Total <br />
+								<small>/ person</small>
+							</span>
+							<h1>${numberOfPeople !== "0" ? totalEachTip : "0.00"}</h1>
+						</div>
+						<button className="btn-reset" onClick={handleReset}>
+							Reset
+						</button>
 					</div>
-					<div>
-						<span>
-							Total <br />
-							<small>/ person</small>
-						</span>
-						<h1>${numberOfPeople ? totalEachTip : "0.00"}</h1>
-					</div>
-					<button className="btn-reset" onClick={handleReset}>
-						Reset
-					</button>
 				</div>
 			</div>
 
