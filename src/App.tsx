@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+import Logo from "./images/logo.svg";
+
 function App() {
 	const [bill, setBill] = useState("");
 	const [tip, setTip] = useState("");
@@ -60,6 +62,7 @@ function App() {
 
 	return (
 		<main className="App">
+			<img src={Logo} alt="logo" />
 			<div className="container">
 				<div className="left-section">
 					<div className="bill">
@@ -72,13 +75,38 @@ function App() {
 							value={bill}
 						/>
 					</div>
+					<label>Select Tip %</label>
 					<div className="select-tip">
-						<span>Select Tip %</span>
-						<button onClick={() => handleTip(5)}>5%</button>
-						<button onClick={() => handleTip(10)}>10%</button>
-						<button onClick={() => handleTip(15)}>15%</button>
-						<button onClick={() => handleTip(25)}>25%</button>
-						<button onClick={() => handleTip(50)}>50%</button>
+						<button
+							className={tip === "5" ? "active" : ""}
+							onClick={() => handleTip(5)}
+						>
+							5%
+						</button>
+						<button
+							className={tip === "10" ? "active" : ""}
+							onClick={() => handleTip(10)}
+						>
+							10%
+						</button>
+						<button
+							className={tip === "15" ? "active" : ""}
+							onClick={() => handleTip(15)}
+						>
+							15%
+						</button>
+						<button
+							className={tip === "25" ? "active" : ""}
+							onClick={() => handleTip(25)}
+						>
+							25%
+						</button>
+						<button
+							className={tip === "50" ? "active" : ""}
+							onClick={() => handleTip(50)}
+						>
+							50%
+						</button>
 						<input
 							type="number"
 							placeholder="Custom"
@@ -89,9 +117,27 @@ function App() {
 						/>
 					</div>
 					<div className="number-of-peoples">
-						<label htmlFor="number-of-people">Number of People</label>
+						<div>
+							<label htmlFor="number-of-people">Number of People</label>
+							<span
+								className="error"
+								style={{
+									visibility:
+										bill && (tip || customTip) && numberOfPeople == "0"
+											? "visible"
+											: "hidden",
+								}}
+							>
+								Can't be zero
+							</span>
+						</div>
 						<input
 							type="number"
+							className={
+								bill && (tip || customTip) && numberOfPeople == "0"
+									? "input-error"
+									: ""
+							}
 							id="number-of-people"
 							placeholder="0"
 							min={0}
@@ -106,17 +152,21 @@ function App() {
 				<div className="right-section">
 					<div>
 						<span>
-							Tip Amount <small>/ person</small>
+							Tip Amount <br />
+							<small>/ person</small>
 						</span>
-						<h1>${eachTip}</h1>
+						<h1>${numberOfPeople ? eachTip : "0.00"}</h1>
 					</div>
 					<div>
 						<span>
-							Total <small>/ person</small>
+							Total <br />
+							<small>/ person</small>
 						</span>
-						<h1>${totalEachTip}</h1>
+						<h1>${numberOfPeople ? totalEachTip : "0.00"}</h1>
 					</div>
-					<button onClick={handleReset}>Reset</button>
+					<button className="btn-reset" onClick={handleReset}>
+						Reset
+					</button>
 				</div>
 			</div>
 
