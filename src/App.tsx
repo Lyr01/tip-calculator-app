@@ -41,9 +41,11 @@ function App() {
 			).toFixed(2);
 			setEachTip(eachTipAmount);
 
-			const totalEachTipAmount =
-				Number(bill) / Number(numberOfPeople) + Number(eachTip);
-			setTotalEachTip(String(totalEachTipAmount.toFixed(2)));
+			const totalEachTipAmount = (
+				Number(bill) / Number(numberOfPeople) +
+				Number(eachTipAmount)
+			).toFixed(2);
+			setTotalEachTip(String(totalEachTipAmount));
 		}
 	}, [bill, tip, numberOfPeople, customTip]);
 
