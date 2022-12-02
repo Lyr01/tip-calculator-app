@@ -151,7 +151,9 @@ button {
 
 .select-tip button,
 .select-tip input {
+	background-image: none;
 	width: 7.3125rem;
+	font-size: 22px;
 	border: none;
 }
 
